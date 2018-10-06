@@ -1,4 +1,5 @@
 import math
+import random
 
 
 class ActionTypes:
@@ -49,6 +50,12 @@ UP = Point(0, -1)
 DOWN = Point(0, 1)
 LEFT = Point(-1, 0)
 RIGHT = Point(1, 0)
+
+
+def get_random_direction():
+    i = random.randint(0, 3)
+    dico = {0: UP, 1: DOWN, 2: LEFT, 3: RIGHT}
+    return dico[i]
 
 
 class GameInfo(object):
