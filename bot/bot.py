@@ -35,8 +35,8 @@ class Bot:
             :param playerInfo: Your bot's current state.
         """
         self.PlayerInfo = playerInfo
-        print(self.PlayerInfo.CarriedResources)
-        print(self.PlayerInfo.CarryingCapacity)
+        # print(self.PlayerInfo.CarriedResources)
+        # print(self.PlayerInfo.CarryingCapacity)
 
     def execute_turn(self, gameMap, visiblePlayers):
         """
@@ -54,17 +54,26 @@ class Bot:
         # return action
         
         
-        # print('---------')
-        # print(self.PlayerInfo.Position.x, self.PlayerInfo.Position.y)
-        # d = fastest_path_estimation(Point(18, 18), self.PlayerInfo, gameMap)
+        # print('******')
+        # # print(self.PlayerInfo.Position.x, self.PlayerInfo.Position.y)
+        # d = fastest_path_estimation(Point(10, 5), self.PlayerInfo, gameMap)
         # direction = Point(d[0], d[1])
+        # print(direction.x, direction.y)
 
+        # print('*******')
         # return create_move_action(direction)    
 
-        while(self.PlayerInfo.HouseLocation.x is None):
-            return create_move_action(RIGHT)
+
+        while not self.returned_home:
+            if (self.PlayerInfo.Position == self.PlayerInfo.HouseLocation):
+                self.returned_home = True
+            else:
+                return create_move_action(RIGHT)
         
         return yolo_swag_phase_2(self.PlayerInfo, gameMap)
+
+
+
 
 
         # Write your bot here. Use functions from aiHelper to instantiate your actions.
