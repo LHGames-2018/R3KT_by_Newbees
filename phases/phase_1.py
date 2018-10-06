@@ -2,10 +2,12 @@
 from helper import *
 import random
 
-def move_home(playerInfo, gameMap):
-    r = random.randint(0,10)
-    if r==0:
-        return create_move_action(get_random_direction())
+
+def move_home(playerInfo, gameMap, add_random=True):
+    if add_random:
+        r = random.randint(0,10)
+        if r==0:
+            return create_move_action(get_random_direction())
     if playerInfo.HouseLocation.x < playerInfo.Position.x:
         if get_left_tile(playerInfo, gameMap) != TileContent.Empty and get_up_tile(playerInfo, gameMap) != TileContent.Empty:
             return create_move_action(DOWN)
