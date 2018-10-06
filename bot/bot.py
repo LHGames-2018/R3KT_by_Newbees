@@ -3,13 +3,16 @@ from phases import *
 
 action = None
 
-mine_x, mine_y = 0, 0
-
+mx, my = -1, -1
 
 
 class Bot:
     def __init__(self):
         pass
+
+    # def init_map(self):
+    #     if mx == -1 and my == -1:
+    #         for ()
 
     def before_turn(self, playerInfo):
         """
