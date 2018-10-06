@@ -45,7 +45,8 @@ class Bot:
         while not self.returned_home :
             if (self.PlayerInfo.Position == self.PlayerInfo.HouseLocation):
                 self.returned_home = True
-            return move_home(self.PlayerInfo, gameMap, False)
+            return create_move_action(DOWN)
+            # return move_home(self.PlayerInfo, gameMap, False)
         action = yolo_swag_phase_2(self.PlayerInfo, gameMap)
         print(self.PlayerInfo.HouseLocation)
         print(self.PlayerInfo.Position)
