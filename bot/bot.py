@@ -54,7 +54,7 @@ class Bot:
         # print(self.PlayerInfo.Position)
         # return action
 
-        return create_empty_action()
+        return create_attack_action(LEFT)
 
         # Write your bot here. Use functions from aiHelper to instantiate your actions.
         # return create_move_action(Point(-1, 0))
