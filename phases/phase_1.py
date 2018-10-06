@@ -5,11 +5,15 @@ from helper import *
 def move_home(playerInfo, gameMap):
     if playerInfo.HouseLocation.x < playerInfo.Position.x:
         if get_left_tile(playerInfo, gameMap) != TileContent.Empty and get_up_tile(playerInfo, gameMap) != TileContent.Empty:
-            return create_move_action(UP)
-        elif get_left_tile(playerInfo, gameMap) != TileContent.Empty and get_down_tile(playerInfo, gameMap) != TileContent.Empty:
             return create_move_action(DOWN)
+        elif get_left_tile(playerInfo, gameMap) != TileContent.Empty and get_down_tile(playerInfo, gameMap) != TileContent.Empty:
+            return create_move_action(UP)
         return create_move_action(LEFT)
     elif playerInfo.HouseLocation.x > playerInfo.Position.x:
+        if get_right_tile(playerInfo, gameMap) != TileContent.Empty and get_up_tile(playerInfo, gameMap) != TileContent.Empty:
+            return create_move_action(DOWN)
+        elif get_right_tile(playerInfo, gameMap) != TileContent.Empty and get_down_tile(playerInfo, gameMap) != TileContent.Empty:
+            return create_move_action(UP)
         return create_move_action(RIGHT)
     elif playerInfo.HouseLocation.y < playerInfo.Position.y:
         if get_up_tile(playerInfo, gameMap) != TileContent.Empty and get_left_tile(playerInfo, gameMap) != TileContent.Empty:
@@ -18,6 +22,10 @@ def move_home(playerInfo, gameMap):
             return create_move_action(LEFT)
         return create_move_action(UP)
     elif playerInfo.HouseLocation.y > playerInfo.Position.y:
+        if get_down_tile(playerInfo, gameMap) != TileContent.Empty and get_left_tile(playerInfo, gameMap) != TileContent.Empty:
+            return create_move_action(RIGHT)
+        elif get_down_tile(playerInfo, gameMap) != TileContent.Empty and get_right_tile(playerInfo, gameMap) != TileContent.Empty:
+            return create_move_action(LEFT)
         return create_move_action(DOWN)
     print('AT HOME')
     return create_empty_action()
