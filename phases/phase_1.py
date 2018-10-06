@@ -16,7 +16,7 @@ def move_home(playerInfo):
 
 
 def yolo_start(playerInfo, gameMap):
-    if playerInfo.CarriedResources == playerInfo.CarryingCapacity:
+    if playerInfo.CarriedResources >= 500:
         return move_home(playerInfo)
     # elif playerInfo.CarriedResources != 0 and playerInfo.Position.x == playerInfo.HouseLocation.x and playerInfo.Position.y == playerInfo.HouseLocation.y:
     #     return create_empty_action()
