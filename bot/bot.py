@@ -54,16 +54,7 @@ class Bot:
         # print(self.PlayerInfo.Position)
         # return action
 
-        if gameMap.getTileAt(self.PlayerInfo.Position + LEFT) == TileContent.Player:
-            return create_attack_action(LEFT)
-        elif gameMap.getTileAt(self.PlayerInfo.Position + RIGHT) == TileContent.Player:
-            return create_attack_action(RIGHT)
-        elif gameMap.getTileAt(self.PlayerInfo.Position + UP) == TileContent.Player:
-            return create_attack_action(UP)
-        elif gameMap.getTileAt(self.PlayerInfo.Position + DOWN) == TileContent.Player:
-            return create_attack_action(DOWN)
-
-        return create_attack_action(LEFT)
+        return yolo_swag_phase_2(self.PlayerInfo, gameMap)
 
         # Write your bot here. Use functions from aiHelper to instantiate your actions.
         # return create_move_action(Point(-1, 0))

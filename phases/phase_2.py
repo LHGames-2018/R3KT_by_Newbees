@@ -65,16 +65,39 @@ def fastest_path_estimation(end_position, playerInfo, edges):
 
 
 def yolo_swag_phase_2(playerInfo, gameMap):
+
+    action = attack_if_you_can(playerInfo, gameMap)
+    if action is not None:
+        return action
+
     if playerInfo.CarriedResources == playerInfo.CarryingCapacity:
-        return create_move_action(DOWN)
+        if gameMap.getTileAt(playerInfo.Position + RIGHT) == TileContent.Wall:
+            return create_attack_action(RIGHT)
+        if gameMap.getTileAt(playerInfo.Position + RIGHT) == TileContent.House:
+            return create_move_action(RIGHT)
+        if gameMap.getTileAt(playerInfo.Position) == TileContent.House:
+            return create_empty_action()
+        return create_move_action(RIGHT)
     else:
-        if gameMap.getTileAt(playerInfo.Position + UP) == TileContent.Wall:
-            print('Wall at up')
-            return create_attack_action(UP)
-        if gameMap.getTileAt(playerInfo.Position + UP) == TileContent.House:
-            print('House at up')
-            return create_steal_action(UP)
-        if gameMap.getTileAt(playerInfo.Position + UP) == TileContent.Resource:
-            print('Ressouce at up')
-            return create_collect_action(UP)
-        return create_move_action(UP)
+        if gameMap.getTileAt(playerInfo.Position + LEFT) == TileContent.Wall:
+            return create_attack_action(LEFT)
+        if gameMap.getTileAt(playerInfo.Position + LEFT) == TileContent.House:
+            return create_steal_action(LEFT)
+        # if gameMap.getTileAt(playerInfo.Position + UP) == TileContent.Resource:
+        #     print('Ressouce at up')
+        #     return create_collect_action(UP)
+        return create_move_action(LEFT)
+
+    return move_home(playerInfo, gameMap, False, playerInfo.HouseLocation.x, playerInfo.HouseLocation.y)
+
+
+def attack_if_you_can(playerInfo, gameMap):
+    if gameMap.getTileAt(playerInfo.Position + LEFT) == TileContent.Player:
+        return create_attack_action(LEFT)
+    elif gameMap.getTileAt(playerInfo.Position + RIGHT) == TileContent.Player:
+        return create_attack_action(RIGHT)
+    elif gameMap.getTileAt(playerInfo.Position + UP) == TileContent.Player:
+        return create_attack_action(UP)
+    elif gameMap.getTileAt(playerInfo.Position + DOWN) == TileContent.Player:
+        return create_attack_action(DOWN)
+    return None
