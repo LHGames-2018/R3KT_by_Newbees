@@ -1,4 +1,7 @@
 from helper import *
+from phases import *
+
+action = None
 
 
 class Bot:
@@ -11,6 +14,10 @@ class Bot:
             :param playerInfo: Your bot's current state.
         """
         self.PlayerInfo = playerInfo
+        print(self.PlayerInfo.CarriedResources)
+        print(self.PlayerInfo.CarryingCapacity)
+        # attrs = vars(playerInfo)
+        # print(', '.join("%s: %s" % item for item in attrs.items()))
 
     def execute_turn(self, gameMap, visiblePlayers):
         """
@@ -18,9 +25,11 @@ class Bot:
             :param gameMap: The gamemap.
             :param visiblePlayers:  The list of visible players.
         """
+        action = yolo_start(self.PlayerInfo, gameMap)
+        return action
 
         # Write your bot here. Use functions from aiHelper to instantiate your actions.
-        return create_move_action(Point(1, 0))
+        # return create_move_action(Point(-1, 0))
 
     def after_turn(self):
         """
