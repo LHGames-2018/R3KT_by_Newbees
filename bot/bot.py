@@ -76,7 +76,7 @@ class Bot:
         # return attack_if_you_can(self.PlayerInfo, gameMap)
 
 
-        if self.cpt_lvl <= 10:
+        if self.cpt_lvl <= 2:
             self.cpt_lvl += 1
             return create_upgrade_action(UpgradeType.AttackPower)
 
@@ -141,23 +141,8 @@ def go_to_dest(dx, dy, playerInfo, gameMap, add_random):
         r = random.randint(0, 50)
         if r == 0:
             return create_move_action(get_random_direction())
-    if dx < playerInfo.Position.x:
-        if get_left_tile(playerInfo, gameMap) == TileContent.Wall:
-            return create_attack_action(LEFT)
-        if get_left_tile(playerInfo, gameMap) != TileContent.Empty and get_up_tile(playerInfo, gameMap) != TileContent.Empty:
-            return create_move_action(DOWN)
-        elif get_left_tile(playerInfo, gameMap) != TileContent.Empty and get_down_tile(playerInfo, gameMap) != TileContent.Empty:
-            return create_move_action(UP)
-        return create_move_action(LEFT)
-    elif dx > playerInfo.Position.x:
-        if get_right_tile(playerInfo, gameMap) == TileContent.Wall:
-            return create_attack_action(RIGHT)
-        if get_right_tile(playerInfo, gameMap) != TileContent.Empty and get_up_tile(playerInfo, gameMap) != TileContent.Empty:
-            return create_move_action(DOWN)
-        elif get_right_tile(playerInfo, gameMap) != TileContent.Empty and get_down_tile(playerInfo, gameMap) != TileContent.Empty:
-            return create_move_action(UP)
-        return create_move_action(RIGHT)
-    elif dy < playerInfo.Position.y:
+    
+    if dy < playerInfo.Position.y:
         if get_up_tile(playerInfo, gameMap) == TileContent.Wall:
             return create_attack_action(UP)
         if get_up_tile(playerInfo, gameMap) != TileContent.Empty and get_left_tile(playerInfo, gameMap) != TileContent.Empty:
@@ -173,4 +158,20 @@ def go_to_dest(dx, dy, playerInfo, gameMap, add_random):
         elif get_down_tile(playerInfo, gameMap) != TileContent.Empty and get_right_tile(playerInfo, gameMap) != TileContent.Empty:
             return create_move_action(LEFT)
         return create_move_action(DOWN)
+    elif dx < playerInfo.Position.x:
+        if get_left_tile(playerInfo, gameMap) == TileContent.Wall:
+            return create_attack_action(LEFT)
+        if get_left_tile(playerInfo, gameMap) != TileContent.Empty and get_up_tile(playerInfo, gameMap) != TileContent.Empty:
+            return create_move_action(DOWN)
+        elif get_left_tile(playerInfo, gameMap) != TileContent.Empty and get_down_tile(playerInfo, gameMap) != TileContent.Empty:
+            return create_move_action(UP)
+        return create_move_action(LEFT)
+    elif dx > playerInfo.Position.x:
+        if get_right_tile(playerInfo, gameMap) == TileContent.Wall:
+            return create_attack_action(RIGHT)
+        if get_right_tile(playerInfo, gameMap) != TileContent.Empty and get_up_tile(playerInfo, gameMap) != TileContent.Empty:
+            return create_move_action(DOWN)
+        elif get_right_tile(playerInfo, gameMap) != TileContent.Empty and get_down_tile(playerInfo, gameMap) != TileContent.Empty:
+            return create_move_action(UP)
+        return create_move_action(RIGHT)
     return create_empty_action()
