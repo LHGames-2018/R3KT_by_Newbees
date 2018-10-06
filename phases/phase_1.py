@@ -2,12 +2,20 @@
 from helper import *
 
 
-def move_home(playerInfo):
+def move_home(playerInfo, gameMap):
     if playerInfo.HouseLocation.x < playerInfo.Position.x:
+        if get_left_tile(playerInfo, gameMap) != TileContent.Empty and get_up_tile(playerInfo, gameMap) != TileContent.Empty:
+            return create_move_action(UP)
+        elif get_left_tile(playerInfo, gameMap) != TileContent.Empty and get_down_tile(playerInfo, gameMap) != TileContent.Empty:
+            return create_move_action(DOWN)
         return create_move_action(LEFT)
     elif playerInfo.HouseLocation.x > playerInfo.Position.x:
         return create_move_action(RIGHT)
     elif playerInfo.HouseLocation.y < playerInfo.Position.y:
+        if get_up_tile(playerInfo, gameMap) != TileContent.Empty and get_left_tile(playerInfo, gameMap) != TileContent.Empty:
+            return create_move_action(RIGHT)
+        elif get_up_tile(playerInfo, gameMap) != TileContent.Empty and get_right_tile(playerInfo, gameMap) != TileContent.Empty:
+            return create_move_action(LEFT)
         return create_move_action(UP)
     elif playerInfo.HouseLocation.y > playerInfo.Position.y:
         return create_move_action(DOWN)
@@ -17,7 +25,7 @@ def move_home(playerInfo):
 
 def yolo_start(playerInfo, gameMap):
     if playerInfo.CarriedResources >= 500:
-        return move_home(playerInfo)
+        return move_home(playerInfo, gameMap)
     # elif playerInfo.CarriedResources != 0 and playerInfo.Position.x == playerInfo.HouseLocation.x and playerInfo.Position.y == playerInfo.HouseLocation.y:
     #     return create_empty_action()
     else:

@@ -3,6 +3,9 @@ from phases import *
 
 action = None
 
+mine_x, mine_y = 0, 0
+
+
 
 class Bot:
     def __init__(self):
@@ -27,7 +30,6 @@ class Bot:
         """
         action = yolo_start(self.PlayerInfo, gameMap)
         return action
-
         # Write your bot here. Use functions from aiHelper to instantiate your actions.
         # return create_move_action(Point(-1, 0))
 

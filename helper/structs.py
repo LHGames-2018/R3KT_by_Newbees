@@ -58,6 +58,22 @@ def get_random_direction():
     return dico[i]
 
 
+def get_up_tile(playerInfo, gameMap):
+    return gameMap.getTileAt(playerInfo.Position + UP)
+
+
+def get_down_tile(playerInfo, gameMap):
+    return gameMap.getTileAt(playerInfo.Position + DOWN)
+
+
+def get_left_tile(playerInfo, gameMap):
+    return gameMap.getTileAt(playerInfo.Position + LEFT)
+
+
+def get_right_tile(playerInfo, gameMap):
+    return gameMap.getTileAt(playerInfo.Position + RIGHT)
+
+
 class GameInfo(object):
 
     def __init__(self, json_dict):
