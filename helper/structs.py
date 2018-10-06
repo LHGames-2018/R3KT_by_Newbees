@@ -45,6 +45,12 @@ class Point(object):
         return math.sqrt(math.pow(delta_x, 2) + math.pow(delta_y, 2))
 
 
+UP = Point(0, -1)
+DOWN = Point(0, 1)
+LEFT = Point(-1, 0)
+RIGHT = Point(1, 0)
+
+
 class GameInfo(object):
 
     def __init__(self, json_dict):
