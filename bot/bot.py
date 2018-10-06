@@ -45,14 +45,16 @@ class Bot:
             :param gameMap: The gamemap.
             :param visiblePlayers:  The list of visible players.
         """
-        while not self.returned_home :
-            if (self.PlayerInfo.Position == self.PlayerInfo.HouseLocation):
-                self.returned_home = True
-            return move_home(self.PlayerInfo, gameMap, False, self.hx, self.hy)
-        action = yolo_swag_phase_2(self.PlayerInfo, gameMap)
-        print(self.PlayerInfo.HouseLocation)
-        print(self.PlayerInfo.Position)
-        return action
+        # while not self.returned_home :
+        #     if (self.PlayerInfo.Position == self.PlayerInfo.HouseLocation):
+        #         self.returned_home = True
+        #     return move_home(self.PlayerInfo, gameMap, False, self.hx, self.hy)
+        # action = yolo_swag_phase_2(self.PlayerInfo, gameMap)
+        # print(self.PlayerInfo.HouseLocation)
+        # print(self.PlayerInfo.Position)
+        # return action
+
+        return create_empty_action()
 
         # Write your bot here. Use functions from aiHelper to instantiate your actions.
         # return create_move_action(Point(-1, 0))
