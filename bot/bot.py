@@ -54,6 +54,15 @@ class Bot:
         # print(self.PlayerInfo.Position)
         # return action
 
+        if gameMap.getTileAt(self.PlayerInfo.Position + LEFT) == TileContent.Player:
+            return create_attack_action(LEFT)
+        elif gameMap.getTileAt(self.PlayerInfo.Position + RIGHT) == TileContent.Player:
+            return create_attack_action(RIGHT)
+        elif gameMap.getTileAt(self.PlayerInfo.Position + UP) == TileContent.Player:
+            return create_attack_action(UP)
+        elif gameMap.getTileAt(self.PlayerInfo.Position + DOWN) == TileContent.Player:
+            return create_attack_action(DOWN)
+
         return create_attack_action(LEFT)
 
         # Write your bot here. Use functions from aiHelper to instantiate your actions.
