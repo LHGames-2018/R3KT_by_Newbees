@@ -1,5 +1,6 @@
 from helper import *
 from phases import *
+from algos import *
 
 # action = None
 
@@ -33,8 +34,6 @@ class Bot:
         Gets called before ExecuteTurn. This is where you get your bot's state.
             :param playerInfo: Your bot's current state.
         """
-        if self.hx is None and self.hy is None:
-            self.hx, self.hy = playerInfo.HouseLocation.x, playerInfo.HouseLocation.y
         self.PlayerInfo = playerInfo
         print(self.PlayerInfo.CarriedResources)
         print(self.PlayerInfo.CarryingCapacity)
@@ -53,8 +52,20 @@ class Bot:
         # print(self.PlayerInfo.HouseLocation)
         # print(self.PlayerInfo.Position)
         # return action
+        
+        
+        # print('---------')
+        # print(self.PlayerInfo.Position.x, self.PlayerInfo.Position.y)
+        # d = fastest_path_estimation(Point(18, 18), self.PlayerInfo, gameMap)
+        # direction = Point(d[0], d[1])
 
+        # return create_move_action(direction)    
+
+        while(self.PlayerInfo.HouseLocation.x is None):
+            return create_move_action(RIGHT)
+        
         return yolo_swag_phase_2(self.PlayerInfo, gameMap)
+
 
         # Write your bot here. Use functions from aiHelper to instantiate your actions.
         # return create_move_action(Point(-1, 0))
