@@ -25,6 +25,7 @@ from phases import *
 class Bot:
     def __init__(self):
         self.returned_home = False
+        self.hx, self.hy = None, None
         pass
 
     def before_turn(self, playerInfo):
@@ -32,6 +33,8 @@ class Bot:
         Gets called before ExecuteTurn. This is where you get your bot's state.
             :param playerInfo: Your bot's current state.
         """
+        if self.hx is None and self.hy is None:
+            self.hx, self.hy = playerInfo.HouseLocation.x, playerInfo.HouseLocation.y
         self.PlayerInfo = playerInfo
         print(self.PlayerInfo.CarriedResources)
         print(self.PlayerInfo.CarryingCapacity)
@@ -45,8 +48,7 @@ class Bot:
         while not self.returned_home :
             if (self.PlayerInfo.Position == self.PlayerInfo.HouseLocation):
                 self.returned_home = True
-            return create_move_action(DOWN)
-            # return move_home(self.PlayerInfo, gameMap, False)
+            return move_home(self.PlayerInfo, gameMap, False, hx, hy)
         action = yolo_swag_phase_2(self.PlayerInfo, gameMap)
         print(self.PlayerInfo.HouseLocation)
         print(self.PlayerInfo.Position)

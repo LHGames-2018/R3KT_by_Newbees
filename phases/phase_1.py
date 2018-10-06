@@ -3,30 +3,30 @@ from helper import *
 import random
 
 
-def move_home(playerInfo, gameMap, add_random=True):
+def move_home(playerInfo, gameMap, add_random=True, hx=None, hy=None):
     if add_random:
         r = random.randint(0,10)
         if r==0:
             return create_move_action(get_random_direction())
-    if playerInfo.HouseLocation.x < playerInfo.Position.x:
+    if hx < playerInfo.Position.x:
         if get_left_tile(playerInfo, gameMap) != TileContent.Empty and get_up_tile(playerInfo, gameMap) != TileContent.Empty:
             return create_move_action(DOWN)
         elif get_left_tile(playerInfo, gameMap) != TileContent.Empty and get_down_tile(playerInfo, gameMap) != TileContent.Empty:
             return create_move_action(UP)
         return create_move_action(LEFT)
-    elif playerInfo.HouseLocation.x > playerInfo.Position.x:
+    elif hx > playerInfo.Position.x:
         if get_right_tile(playerInfo, gameMap) != TileContent.Empty and get_up_tile(playerInfo, gameMap) != TileContent.Empty:
             return create_move_action(DOWN)
         elif get_right_tile(playerInfo, gameMap) != TileContent.Empty and get_down_tile(playerInfo, gameMap) != TileContent.Empty:
             return create_move_action(UP)
         return create_move_action(RIGHT)
-    elif playerInfo.HouseLocation.y < playerInfo.Position.y:
+    elif hy < playerInfo.Position.y:
         if get_up_tile(playerInfo, gameMap) != TileContent.Empty and get_left_tile(playerInfo, gameMap) != TileContent.Empty:
             return create_move_action(RIGHT)
         elif get_up_tile(playerInfo, gameMap) != TileContent.Empty and get_right_tile(playerInfo, gameMap) != TileContent.Empty:
             return create_move_action(LEFT)
         return create_move_action(UP)
-    elif playerInfo.HouseLocation.y > playerInfo.Position.y:
+    elif hy > playerInfo.Position.y:
         if get_down_tile(playerInfo, gameMap) != TileContent.Empty and get_left_tile(playerInfo, gameMap) != TileContent.Empty:
             return create_move_action(RIGHT)
         elif get_down_tile(playerInfo, gameMap) != TileContent.Empty and get_right_tile(playerInfo, gameMap) != TileContent.Empty:
