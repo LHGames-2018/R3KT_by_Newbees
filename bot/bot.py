@@ -76,9 +76,9 @@ class Bot:
         # return attack_if_you_can(self.PlayerInfo, gameMap)
 
 
-        if self.cpt_lvl <= 2:
-            self.cpt_lvl += 1
-            return create_upgrade_action(UpgradeType.AttackPower)
+        # if self.cpt_lvl <= 2:
+        #     self.cpt_lvl += 1
+        #     return create_upgrade_action(UpgradeType.AttackPower)
 
 
         closest_player = get_closest_player(
