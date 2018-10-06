@@ -76,23 +76,25 @@ class Bot:
         # return attack_if_you_can(self.PlayerInfo, gameMap)
 
 
-        # if self.cpt_lvl <= 2:
+        # if self.cpt_lvl <= 10:
         #     self.cpt_lvl += 1
-        #     return create_upgrade_action(UpgradeType.AttackPower)
-
+        #     # return create_upgrade_action(UpgradeType.AttackPower)
+        #     return create_move_action(UP)
 
         closest_player = get_closest_player(
             self.PlayerInfo.Position, visiblePlayers, self.victimes)
-        if closest_player is not None and closest_player:
+        if closest_player is not None and gameMap.getTileAt(closest_player.Position) != TileContent.House:
             attack = attack_if_you_can(self.PlayerInfo, gameMap)
             if attack is None:
                 return go_to_dest(closest_player.Position.x, closest_player.Position.y, self.PlayerInfo, gameMap, True)
-            elif attack is not None and closest_player.Name not in self.victimes:
-                self.victimes[closest_player.Name] = 0.5
+            else:
                 return attack
-            elif attack is not None and self.victimes[closest_player.Name] < 5.0:
-                self.victimes[closest_player.Name] += 0.5
-                return attack
+            # elif attack is not None and closest_player.Name not in self.victimes:
+            #     self.victimes[closest_player.Name] = 0.5
+            #     return attack
+            # elif attack is not None and self.victimes[closest_player.Name] < 5.0:
+            #     self.victimes[closest_player.Name] += 0.5
+            #     return attack
 
 
         if self.step == 0 or self.direction is None:
@@ -126,7 +128,7 @@ class Bot:
 def get_closest_player(posi, visiblePlayers, victimes):
     min_dist = float('inf')
     closest_player = None
-    target_victimes = [p for p in visiblePlayers if (p.Name not in victimes.keys() or (p.Name in victimes.keys() and victimes[p.Name] < 5.0)) ]
+    target_victimes = visiblePlayers   # [p for p in visiblePlayers if (p.Name not in victimes.keys() or (p.Name in victimes.keys() and victimes[p.Name] < 5.0)) ]
     for p in target_victimes:
         dist = math.sqrt((posi.x - p.Position.x)**2 +
                          (posi.y - p.Position.y)**2)
@@ -142,23 +144,7 @@ def go_to_dest(dx, dy, playerInfo, gameMap, add_random):
         if r == 0:
             return create_move_action(get_random_direction())
     
-    if dy < playerInfo.Position.y:
-        if get_up_tile(playerInfo, gameMap) == TileContent.Wall:
-            return create_attack_action(UP)
-        if get_up_tile(playerInfo, gameMap) != TileContent.Empty and get_left_tile(playerInfo, gameMap) != TileContent.Empty:
-            return create_move_action(RIGHT)
-        elif get_up_tile(playerInfo, gameMap) != TileContent.Empty and get_right_tile(playerInfo, gameMap) != TileContent.Empty:
-            return create_move_action(LEFT)
-        return create_move_action(UP)
-    elif dy > playerInfo.Position.y:
-        if get_down_tile(playerInfo, gameMap) == TileContent.Wall:
-            return create_attack_action(DOWN)
-        if get_down_tile(playerInfo, gameMap) != TileContent.Empty and get_left_tile(playerInfo, gameMap) != TileContent.Empty:
-            return create_move_action(RIGHT)
-        elif get_down_tile(playerInfo, gameMap) != TileContent.Empty and get_right_tile(playerInfo, gameMap) != TileContent.Empty:
-            return create_move_action(LEFT)
-        return create_move_action(DOWN)
-    elif dx < playerInfo.Position.x:
+    if dx < playerInfo.Position.x:
         if get_left_tile(playerInfo, gameMap) == TileContent.Wall:
             return create_attack_action(LEFT)
         if get_left_tile(playerInfo, gameMap) != TileContent.Empty and get_up_tile(playerInfo, gameMap) != TileContent.Empty:
@@ -174,4 +160,20 @@ def go_to_dest(dx, dy, playerInfo, gameMap, add_random):
         elif get_right_tile(playerInfo, gameMap) != TileContent.Empty and get_down_tile(playerInfo, gameMap) != TileContent.Empty:
             return create_move_action(UP)
         return create_move_action(RIGHT)
+    elif dy < playerInfo.Position.y:
+        if get_up_tile(playerInfo, gameMap) == TileContent.Wall:
+            return create_attack_action(UP)
+        if get_up_tile(playerInfo, gameMap) != TileContent.Empty and get_left_tile(playerInfo, gameMap) != TileContent.Empty:
+            return create_move_action(RIGHT)
+        elif get_up_tile(playerInfo, gameMap) != TileContent.Empty and get_right_tile(playerInfo, gameMap) != TileContent.Empty:
+            return create_move_action(LEFT)
+        return create_move_action(UP)
+    elif dy > playerInfo.Position.y:
+        if get_down_tile(playerInfo, gameMap) == TileContent.Wall:
+            return create_attack_action(DOWN)
+        if get_down_tile(playerInfo, gameMap) != TileContent.Empty and get_left_tile(playerInfo, gameMap) != TileContent.Empty:
+            return create_move_action(RIGHT)
+        elif get_down_tile(playerInfo, gameMap) != TileContent.Empty and get_right_tile(playerInfo, gameMap) != TileContent.Empty:
+            return create_move_action(LEFT)
+        return create_move_action(DOWN)
     return create_empty_action()
