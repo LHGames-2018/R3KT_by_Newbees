@@ -70,7 +70,9 @@ class Bot:
             else:
                 return create_move_action(RIGHT)
         
-        return yolo_swag_phase_2(self.PlayerInfo, gameMap)
+        return attack_if_you_can(self.PlayerInfo, gameMap)
+
+        # return yolo_swag_phase_2(self.PlayerInfo, gameMap)
 
 
 
