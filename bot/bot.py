@@ -1,11 +1,30 @@
 from helper import *
 from phases import *
 
-action = None
+# action = None
+
+# mx, my = -1, -1
+
+# def get_rayon(x, y):
+#     return math.sqrt(math.pow(x, 2)+math.pow(y.2))
+
+# def search_mine(playerInfo, gameMap):
+#     for i in range(playerInfo.HouseLocation.x-9, playerInfo.HouseLocation.x+9):
+#         for j in range(playerInfo.HouseLocation.y-9, playerInfo.HouseLocation.y+9):
+#             if gameMap.getTileAt(Point(i, j)) == TileContent.Resource:
+#                 if get_rayon()
+
+# def init_map(playerInfo, gameMap):
+#     if mx != -1 and my != -1:
+#         if gameMap.getTileAt(Point(mx, my)) != TileContent.Resource:
+#             search_mine(playerInfo, gameMap)
+#     if mx == -1 and my == -1:
+#         for ()
 
 
 class Bot:
     def __init__(self):
+        self.returned_home = False
         pass
 
     def before_turn(self, playerInfo):
@@ -16,8 +35,6 @@ class Bot:
         self.PlayerInfo = playerInfo
         print(self.PlayerInfo.CarriedResources)
         print(self.PlayerInfo.CarryingCapacity)
-        # attrs = vars(playerInfo)
-        # print(', '.join("%s: %s" % item for item in attrs.items()))
 
     def execute_turn(self, gameMap, visiblePlayers):
         """
@@ -25,7 +42,13 @@ class Bot:
             :param gameMap: The gamemap.
             :param visiblePlayers:  The list of visible players.
         """
-        action = yolo_start(self.PlayerInfo, gameMap)
+        while not self.returned_home :
+            if (self.PlayerInfo.Position == self.PlayerInfo.HouseLocation):
+                self.returned_home = True
+            return move_home(self.PlayerInfo, gameMap, False)
+        action = yolo_swag_phase_2(self.PlayerInfo, gameMap)
+        print(self.PlayerInfo.HouseLocation)
+        print(self.PlayerInfo.Position)
         return action
 
         # Write your bot here. Use functions from aiHelper to instantiate your actions.
