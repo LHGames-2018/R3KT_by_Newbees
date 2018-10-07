@@ -76,7 +76,11 @@ class Bot:
         # return attack_if_you_can(self.PlayerInfo, gameMap)
 
 
-        # if self.cpt_lvl <= 10:
+        if self.PlayerInfo.Position == self.PlayerInfo.HouseLocation:
+            self.direction = UP
+            self.step = 1
+        
+        # if self.cpt_lvl <= 30: 
         #     self.cpt_lvl += 1
         #     # return create_upgrade_action(UpgradeType.AttackPower)
         #     return create_move_action(UP)
@@ -99,7 +103,7 @@ class Bot:
 
         if self.step == 0 or self.direction is None:
             self.direction = get_random_direction()
-        elif self.step == 100:
+        elif self.step == 60:
             self.step = 0
             self.direction = get_random_direction()
 
