@@ -10,7 +10,12 @@ Here is the competition description provided by LH Games :
 
 Artificial intelligence is the hot subject in software engineering in Montreal right now and it gathers colossal investments from everywhere around the world. This is why this year’s edition chose this subject as its theme."
 
+Useful links:
+
 [Website](https://lhgames.io)
+
 [Facebook](https://www.facebook.com/PolyHx/)
+
 [Twitter](https://twitter.com/polyhx)
+
 [Instagram](https://instagram.com/polyhx)
